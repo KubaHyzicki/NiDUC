@@ -1,4 +1,4 @@
-function [frameLostVB,frameLostVN] = signalSimulation (n,frameSize,sigma,range,amplify)
+function [frameLost] = signalSimulation (n,frameSize,sigma,range,amplify)
 %tworzenie losowego ciągu binarnego za pomocą rand()
 signal=[];
 signal=generateRand(n);
@@ -35,5 +35,7 @@ for i=corVN
     frameLostVN++;
   end
 end
+
+frameLost=[frameLostVB,frameLostVN];
 
 endfunction
