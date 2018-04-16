@@ -3,18 +3,33 @@ close all;
 clear all;
 
 %setting variables;
-n=1000;
-frameSize=5;
-sigma=4;      %taka duża wartość, bo test jest przy 5-krotnym wzmocnieniem sygnału
-range=0.3;
-amplify=5;
+frameSize=10;
+n=5;
 
-corVB=[];
-corVN=[];
-[corVB,corVN]=signalSimulation(n,frameSize,sigma,range,amplify);
+%creating randomized n binary series
+signal={};
+for i=1:n
+  signal=[signal;generateRand(frameSize)];
+end
+
+%adding parity bit
+for i=1:n
+  signal{i}=codeParityBit(signal{i});
+end
+signal
+
+%canals                         //tu masz błąd, bo zasięg ma raczej obejmować konkretne ramki, a nie konkretne
+%canalS(signal,2,4,frameSize)    %bity w ramkach         //dorobiłeś alternatywy
+signal=canalPp(signal,2,4,frameSize);
+
+%tworzenie wektora z zawierającego kolejne wartości, czy zgadza się bit parzystości w danej ramce
+framesCorr=[];
+for i=1:n
+  frameCorr(i)=decoder(signal{i});
+end
+frameCorr
+
 
 %wyświetlenie histogramu i wykresu poprawności ramek
-hist(corVN);
-%plot(hist(corVN))
-hist(corVN);
-%plot(hist(corVN))
+%hist(frameCorr);
+%plot(hist(frameCorr));
