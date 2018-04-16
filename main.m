@@ -2,33 +2,33 @@ clc;
 close all;
 clear all;
 
-%setting variables;
+%ustawianie zmiennych-poniżej są podane przykładowe wartości, dla których widać już efekty kanałów
 n=1000;
 frameSize=5;
-%sigma=4;      %taka duża wartość, bo test jest przy 5-krotnym wzmocnieniem sygnału
+sigma=4;      %taka duża wartość, bo test jest przy 5-krotnym wzmocnieniem sygnału
 range=0.3;
 amplify=5;
 
-%corVB={};
-%corVN={};
-%for i=1:10
-%  sigma=i/2;
-%  [corVB(i),corVN(i)]=signalSimulation(n,frameSize,sigma,range,amplify);
-%end
-
-corVB=[];
-corVN=[];
-for i=1:1:10
-  sigma=i/2;
-  [,corVN]=signalSimulation(n,frameSize,sigma,range,amplify);
-end
+%testowanie sygnału względem zasięgu przekłamania bitu i sigmy przy szumie
+frameLostVB=[];
+rangeTab=[];
+frameLostVN=[];
+sigmaTab=[];
 for i=1:1:10
   range=i/10;
-  [corVB,]=signalSimulation(n,frameSize,sigma,range,amplify);
+  rangeTab=[rangeTab,range];
+  frameLostVB=[frameLostVB,signalSimulation(n,frameSize,sigma,range,amplify)];
+end
+for i=1:1:10
+  sigma=i/2;
+  sigmaTab=[sigmaTab,sigma];
+  frameLostVN=[frameLostVN,signalSimulation(n,frameSize,sigma,range,amplify)];
 end
 
-%wyświetlenie histogramu i wykresu poprawności ramek
-hist(corVN);
-plot(hist(corVN))
-hist(corVN);
-%plot(hist(corVN))
+%wyświetlenie wykresu poprawności ramek względem zmiennych
+frameLostVB
+rangeTab
+frameLostVN
+sigmaTab
+%plot(frameLostVB,rangeTab)
+%plot(frameLostVN,sigmaTab)
