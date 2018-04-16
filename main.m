@@ -16,13 +16,13 @@ frameLostVN=[];
 sigmaTab=[];
 frameLost=[];
 for i=1:1:10
-  range=i/30;
+  range=(i-1)/30;
   rangeTab=[rangeTab,range];
   frameLost=signalSimulation(n,frameSize,sigma,range,amplify);
   [frameLostVB,]=[frameLostVB,frameLost(1)];
 end
 for i=1:1:10
-  sigma=i/2;
+  sigma=(i-1)/2;
   sigmaTab=[sigmaTab,sigma];
   frameLost=signalSimulation(n,frameSize,sigma,range,amplify);
   [frameLostVN,]=[frameLostVN,frameLost(2)];
