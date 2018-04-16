@@ -18,7 +18,7 @@ amplify-wzmocnienie sygnału
 
 %metody:
 
-signalSimulation(...)-ogólna metoda symulująca utworzenie sygnału, jego przesył i odbiór
+signalSimulation(...)-ogólna metoda symulująca utworzenie sygnału, jego przesył i odbiór, zwraca ilości błędnych pakietów dla wersji z przekłamaniem bitu i z dodaniem szumu
 
 generateRand(n)-tworzy losowy ciąg binarny o długości n(wersja rand())
 
@@ -26,9 +26,9 @@ generateNormrnd(n)-tworzy losowy ciąg binarny o długości n(wersja normrnd())
 
 codeParityBit(signal,frameSize)-zwraca ciąg z pododawanymi bitami parzystości na końcu każdej ramki
 
-canal(signal,sigma,amplify)-kanał dodający szum
+canalVB(signal,range)-kanał przekłamujacy bity
 
-canalV2(signal,range)-kanał przekłamujacy bity
+canalVN(signal,sigma,amplify)-kanał dodający szum
 
 decoder(signalOutVN)-dekoder zaszumionego sygnału
 
