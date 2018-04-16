@@ -29,5 +29,13 @@ for i=1:1:10
 end
 
 %wyświetlenie wykresu poprawności ramek względem zmiennych
-plot(rangeTab,frameLostVB);
-plot(sigmaTab,frameLostVN);
+subplot(211)
+plot(rangeTab,frameLostVB)
+title('Kanał przekłamania bitów')
+xlabel('Zasięg przekłamania bitów')
+ylabel('Ilość utraconych ramek')
+subplot(212)
+plot(sigmaTab,frameLostVN)
+title('Kanał dodający szum biały')
+xlabel('Sigma')
+ylabel('Ilość utraconych ramek')
