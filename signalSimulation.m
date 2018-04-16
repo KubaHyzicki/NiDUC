@@ -1,4 +1,4 @@
-function [] = signalSimulation (n,frameSize,sigma,range,amplify)
+function [corVB,corVN] = signalSimulation (n,frameSize,sigma,range,amplify)
 %tworzenie losowego ciągu binarnego za pomocą rand()
 signal=[];
 signal=generateRand(n);
@@ -20,11 +20,4 @@ signalOutVB=decoder(signalOutVB);
 %tworzenie wektorów z zawierającego kolejne wartości, czy zgadza się bit parzystości w kolejnych ramkach
 corVN=checkBitParity(signalOutVN,frameSize);
 corVB=checkBitParity(signalOutVB,frameSize);
-
-
-%wyświetlenie histogramu i wykresu poprawności ramek
-%hist(corVN)  
-%plot(hist(corVN))
-%hist(corVN);
-%plot(hist(corVN))
 endfunction

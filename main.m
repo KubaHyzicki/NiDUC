@@ -9,4 +9,12 @@ sigma=4;      %taka duża wartość, bo test jest przy 5-krotnym wzmocnieniem sy
 range=0.3;
 amplify=5;
 
-signalSimulation(n,frameSize,sigma,range,amplify);
+corVB=[];
+corVN=[];
+[corVB,corVN]=signalSimulation(n,frameSize,sigma,range,amplify);
+
+%wyświetlenie histogramu i wykresu poprawności ramek
+hist(corVN);
+%plot(hist(corVN))
+hist(corVN);
+%plot(hist(corVN))
