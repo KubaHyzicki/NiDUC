@@ -18,6 +18,8 @@ amplify-wzmocnienie sygnału
 
 %metody:
 
+signalSimulation(...)-ogólna metoda symulująca utworzenie sygnału, jego przesył i odbiór
+
 generateRand(n)-tworzy losowy ciąg binarny o długości n(wersja rand())
 
 generateNormrnd(n)-tworzy losowy ciąg binarny o długości n(wersja normrnd())
