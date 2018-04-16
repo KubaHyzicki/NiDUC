@@ -9,9 +9,9 @@ signal=generateRand(n);
 signal=codeParityBit(signal,frameSize);
 
 %przepuszczenie przez kanał dodający szum biały
-signalOutVN=canal(signal,sigma,amplify);
+signalOutVN=canalVN(signal,sigma,amplify);
 %przepuszczanie przez kanał przekłamujący bity
-signalOutVB=canalV2(signal,range);
+signalOutVB=canalVB(signal,range);
 
 %dekodowanie kanałów
 signalOutVN=decoder(signalOutVN);
