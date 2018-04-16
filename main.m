@@ -29,9 +29,5 @@ for i=1:1:10
 end
 
 %wyświetlenie wykresu poprawności ramek względem zmiennych
-frameLostVB
-rangeTab
-frameLostVN
-sigmaTab
-%plot(frameLostVB,rangeTab)
-%plot(frameLostVN,sigmaTab)
+plot(rangeTab,frameLostVB);
+plot(sigmaTab,frameLostVN);
