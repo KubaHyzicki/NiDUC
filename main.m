@@ -20,9 +20,12 @@ corVB=[];
 corVN=[];
 for i=1:1:10
   sigma=i/2;
-  [corVB,corVN]=signalSimulation(n,frameSize,sigma,range,amplify);
+  [,corVN]=signalSimulation(n,frameSize,sigma,range,amplify);
 end
-
+for i=1:1:10
+  range=i/10;
+  [corVB,]=signalSimulation(n,frameSize,sigma,range,amplify);
+end
 
 %wyświetlenie histogramu i wykresu poprawności ramek
 hist(corVN);
