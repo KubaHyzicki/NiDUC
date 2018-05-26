@@ -4,7 +4,6 @@ function [corr] = checkBitParity (Vec,frameSize)
   b=0;
   i=1;
   corr=[];
-%  VecOrig=[];
   for n=1:(length(Vec))
 %jeśli licznik miejsca dochodzi do bitu parzystości sprawdzana jest jego poprawność, wynik zapisywany jest do wektora, a licznik ramki i licznik poprawności bitu jest resetowany
     if i==parityBitPos
