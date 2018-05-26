@@ -4,7 +4,7 @@ clear all;
 
 %ustawianie zmiennych-poniżej są podane przykładowe wartości, dla których widać już efekty kanałów
 n=1000;
-frameSize=5;
+frameSize=11;
 sigma=4;      %taka duża wartość, bo test jest przy 5-krotnym wzmocnieniem sygnału
 range=0.3;
 amplify=5;
