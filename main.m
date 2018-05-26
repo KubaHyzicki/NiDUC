@@ -4,7 +4,7 @@ clear all;
 
 %ustawianie zmiennych-poniżej są podane przykładowe wartości, dla których widać już efekty kanałów
 n=1000;       %długość sygnału
-frameSize=11; %długość pojedynczej ramki
+frameSize=10; %długość pojedynczej ramki
 range=0.3;    %szansa na przekłamanie bitu(od 0 do 1)
 sigma=4;      %wpływa na rozrzut wartości szumu-taka duża wartość, bo test jest przy 5-krotnym wzmocnieniem sygnału
 amplify=5;    %wzmocnienie sygnału
@@ -37,16 +37,15 @@ for i=1:1:10
   correctBitsVN=[correctBitsVN,frameLost(6)];
 end
 
+
+%obliczanie dla obu kanałów BER i E
 BERvB=[];
 EvB=[];
 BERvN=[];
 EvN=[];
-
-%BER=błędne/wszystkie
-%E=poprawnie/błędnie
 for i=1:(length(missedBitsVB))
   BERvB(i)=missedBitsVB(i)/(recivedBitsVB(i));
-  if missedBitsVB(i)>0                              %możliwie najmniej wpływające na wynik rozwiązanie dzielenia przez zero
+  if missedBitsVB(i)>0                              %możliwie najmniej wpływające na wynik rozwiązanie problemu ewentualnego dzielenia przez zero
     EvB(i)=correctBitsVB(i)/(missedBitsVB(i));
   else
     EvB(i)=correctBitsVB(i)/(missedBitsVB(i)+intmin);
@@ -60,14 +59,25 @@ for i=1:(length(missedBitsVB))
 end
 
 
-%wyświetlenie wykresu poprawności ramek względem zmiennych
-subplot(211)
-plot(rangeTab,BERvN)
-title('Kanał przekłamania bitów')
+
+%wyświetlenie wykresów BER i E ramek względem zmiennych
+subplot(221)
+plot(rangeTab,BERvB)
+title('Kanał przekłamania bitów-BER')
 xlabel('Zasięg przekłamania bitów')
-ylabel('Ilość utraconych ramek')
-subplot(212)
-plot(sigmaTab,EvN)
-title('Kanał dodający szum biały')
+ylabel('BER')
+subplot(222)
+plot(sigmaTab,EvB)
+title('Kanał przekłamania bitów-E')
+xlabel('Zasięg przekłamania bitów')
+ylabel('E')
+subplot(223)
+plot(rangeTab,BERvN)
+title('Kanał dodający szum biały-BER')
 xlabel('Sigma')
-ylabel('Ilość utraconych ramek')
+ylabel('BER')
+subplot(224)
+plot(sigmaTab,EvN)
+title('Kanał dodający szum biały-E')
+xlabel('Sigma')
+ylabel('E')

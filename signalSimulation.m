@@ -5,19 +5,19 @@ signal=generateRand(n);
 %alternatywnie za pomocą normrnd():
 %signal=generateNormrnd(n);
 
-recivedBitsVB=0;        %BER=błędne/wszystkie
-missedBitsVB=0;         %E=poprawnie/błędnie
+recivedBitsVB=0;
+missedBitsVB=0;
 correctBitsVB=0;
 
-recivedBitsVN=0;        %BER=błędne/wszystkie
-missedBitsVN=0;         %E=poprawnie/błędnie
+recivedBitsVN=0;
+missedBitsVN=0;
 correctBitsVN=0;
 
 
 
 tempVec=[];
 frameStart=1;
-%breaker=0;
+%breaker=0;                 %breaker i jego pochodne nazwy służyły wstępnie do zakończenia pętli w razie błędów w wyjściu z niej
 %breakingAt=n*10;
 while(true)
 %  breaker++;
@@ -27,6 +27,7 @@ while(true)
     frameEnd=n;
     tempFrameSize=frameEnd-frameEnd+1;
   end
+%przepuszczanie sygnału przez symulację
   tempVec=codeParityBit(signal(frameStart:frameEnd),tempFrameSize);
   tempVec=canalVB(tempVec,range);
   tempVec=decoder(tempVec);
@@ -58,6 +59,7 @@ while(true)
     frameEnd=n;
     tempFrameSize=frameEnd-frameEnd+1;
   end
+%przepuszczanie sygnału przez symulację
   tempVec=codeParityBit(signal(frameStart:frameEnd),tempFrameSize);
   tempVec=canalVN(tempVec,sigma,amplify);
   tempVec=decoder(tempVec);
