@@ -3,6 +3,9 @@ W projekcie został zasymulowany sygnał zakodowany z użyciem bitów parzystoś
 jest on przepuszczany przez kanał przekłamujący bity lub dodający szum biały,
 potem odkodowywany i sprawdzana jest poprawność jego bitów parzystości
 
+Kod jest mało optymalny do testów, bo funkcja symulująca symuluje obie wersje kanału i zwraca oba wektory ich wyniku; program przez to będzie się wykonywał pewnie dwa razy dłużej niż jest to konieczne(teoretycznie łatwo to poprawić, dodając coś w rodzaju zmiennej trybu)
+
+
 
 %zmienne:
 
