@@ -21,22 +21,24 @@ frameStart=1;
 %breakingAt=n*10;
 while(true)
 %  breaker++;
+  tempFrameSize=frameSize;
   frameEnd=frameStart+frameSize-1;
   if frameEnd>n
     frameEnd=n;
+    tempFrameSize=frameEnd-frameEnd+1;
   end
-  tempVec=codeParityBit(signal(frameStart:frameEnd),frameSize);
+  tempVec=codeParityBit(signal(frameStart:frameEnd),tempFrameSize);
   tempVec=canalVB(tempVec,range);
   tempVec=decoder(tempVec);
   
-  recivedBitsVB+=frameEnd-frameStart+2;
-  if checkBitParity(tempVec,frameSize)(1)==1
-    frameStart+=frameSize;                      %poprawnie przesłana paczka
+  recivedBitsVB+=tempFrameSize;
+  if checkBitParity(tempVec,tempFrameSize)(1)==1
+    frameStart+=tempFrameSize;                      %poprawnie przesłana paczka
     if frameEnd==n
       break;
     end
   else
-    missedBitsVB+=frameEnd-frameStart+2;                  %niepoprawnie przesłana paczka-powtórzenie pętli
+    missedBitsVB+=tempFrameSize;                    %niepoprawnie przesłana paczka-powtórzenie pętli
   end
 %  breaker
 %  if breaker==breakingAt
@@ -50,23 +52,24 @@ frameStart=1;
 %breaker=0;
 while(true)
 %  breaker++;
+  tempFrameSize=frameSize;
   frameEnd=frameStart+frameSize-1;
   if frameEnd>n
     frameEnd=n;
+    tempFrameSize=frameEnd-frameEnd+1;
   end
-  
-  tempVec=codeParityBit(signal(frameStart:frameEnd),frameSize);
+  tempVec=codeParityBit(signal(frameStart:frameEnd),tempFrameSize);
   tempVec=canalVN(tempVec,sigma,amplify);
   tempVec=decoder(tempVec);
   
-  recivedBitsVN+=frameSize+1;
-  if checkBitParity(tempVec,frameSize)(1)==1
-    frameStart+=frameSize;                      %poprawnie przesłana paczka
+  recivedBitsVN+=tempFrameSize;
+  if checkBitParity(tempVec,tempFrameSize)(1)==1
+    frameStart+=tempFrameSize;                      %poprawnie przesłana paczka
     if frameEnd==n
       break;
     end
   else
-    missedBitsVN+=frameEnd-frameStart+2;                  %niepoprawnie przesłana paczka-powtórzenie pętli
+    missedBitsVN+=tempFrameSize;                  %niepoprawnie przesłana paczka-powtórzenie pętli
   end
 %  breaker
 %  if breaker==breakingAt
@@ -75,9 +78,9 @@ while(true)
 %  end
 end
 
-correctBitsVB=recivedBitsVB-missedBitsVB;
+correctBitsVB=recivedBitsVB-missedBitsVB;     %właściwie to to jest niepotrzebne, bo przecież ostateczna liczba poprawnych będzie zawsze taka sama, ale whatever...
 correctBitsVN=recivedBitsVN-missedBitsVN;
 
-output=[recivedBitsVB,missedBitsVB,correctBitsVB,recivedBitsVN,missedBitsVN,correctBitsVN]
+output=[recivedBitsVB,missedBitsVB,correctBitsVB,recivedBitsVN,missedBitsVN,correctBitsVN];
 
 endfunction
