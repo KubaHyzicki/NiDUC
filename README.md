@@ -1,7 +1,8 @@
-# NiDUC
-W projekcie został zasymulowany sygnał zakodowany z użyciem bitów parzystości,
-jest on przepuszczany przez kanał przekłamujący bity lub dodający szum biały,
-potem odkodowywany i sprawdzana jest poprawność jego bitów parzystości
+# NiDUC Etap II
+W projekcie został zasymulowany sygnał, każda ramka kodowana jest z użyciem bitów parzystości,
+przepuszczana przez kanał przekłamujący bity lub dodający szum biały,
+potem odkodowywana i sprawdzana jest poprawność jej bitu parzystości;
+w razie błędu powtarzany jest dla niej cały proces do skutku
 
 
 %zmienne:
