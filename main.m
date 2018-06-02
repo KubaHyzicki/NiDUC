@@ -3,7 +3,7 @@ close all;
 clear all;
 
 %ustawianie zmiennych-poniżej są podane przykładowe wartości, dla których widać już efekty kanałów
-n=1000;       %długość sygnału
+n=100;       %długość sygnału
 frameSize=10; %długość pojedynczej ramki
 range=0.3;    %szansa na przekłamanie bitu(od 0 do 1)
 sigma=4;      %wpływa na rozrzut wartości szumu-taka duża wartość, bo test jest przy 5-krotnym wzmocnieniem sygnału
@@ -75,12 +75,12 @@ ylabel('BER')
 subplot(222)
 plot(sigmaTab,EvB)
 title('Kanał przekłamania bitów-E')
-xlabel('Zasięg przekłamania bitów')
+xlabel('Sigma')
 ylabel('E')
 subplot(223)
 plot(rangeTab,BERvN)
 title('Kanał dodający szum biały-BER')
-xlabel('Sigma')
+xlabel('Zasięg przekłamania bitów')
 ylabel('BER')
 subplot(224)
 plot(sigmaTab,EvN)
