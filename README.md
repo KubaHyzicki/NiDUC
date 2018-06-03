@@ -4,6 +4,9 @@ przepuszczana przez kanał przekłamujący bity lub dodający szum biały,
 potem odkodowywana i sprawdzana jest poprawność jej bitu parzystości;
 w razie błędu powtarzany jest dla niej cały proces do skutku
 
+Kod jest mało optymalny do testów, bo funkcja symulująca symuluje obie wersje kanału i zwraca oba wektory ich wyniku; program przez to będzie się wykonywał pewnie dwa razy dłużej niż jest to konieczne(teoretycznie łatwo to poprawić, dodając coś w rodzaju zmiennej trybu)
+
+
 
 %zmienne:
 
