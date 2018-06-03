@@ -43,20 +43,7 @@ BERvB=[];
 EvB=[];
 BERvN=[];
 EvN=[];
-%for i=1:(length(missedBitsVB))
-%  BERvB(i)=missedBitsVB(i)/(recivedBitsVB(i));
-%  if missedBitsVB(i)>0                              %możliwie najmniej wpływające na wynik rozwiązanie problemu ewentualnego dzielenia przez zero
-%    EvB(i)=correctBitsVB(i)/(missedBitsVB(i));
-%  else
-%    EvB(i)=correctBitsVB(i)/(missedBitsVB(i)+intmin);
-%  end
-%  BERvN(i)=missedBitsVN(i)/(recivedBitsVN(i));
-%  if missedBitsVB(i)>0
-%    EvN(i)=correctBitsVN(i)/(missedBitsVN(i));
-%  else
-%    EvN(i)=correctBitsVN(i)/(missedBitsVN(i)+intmin);
-%  end
-%end
+
 for i=1:(length(missedBitsVB))
   BERvB(i)=missedBitsVB(i)/(recivedBitsVB(i));
   EvB(i)=correctBitsVB(i)/(recivedBitsVB(i));
@@ -70,7 +57,7 @@ end
 subplot(221)
 plot(rangeTab,BERvB)
 title('Kanał przekłamania bitów-BER')
-xlabel('Zasięg przekłamania bitów')
+xlabel('Pp')
 ylabel('BER')
 subplot(222)
 plot(sigmaTab,EvB)
@@ -80,7 +67,7 @@ ylabel('E')
 subplot(223)
 plot(rangeTab,BERvN)
 title('Kanał dodający szum biały-BER')
-xlabel('Zasięg przekłamania bitów')
+xlabel('Pp')
 ylabel('BER')
 subplot(224)
 plot(sigmaTab,EvN)
