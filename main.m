@@ -5,20 +5,12 @@ clear all;
 %ustawianie zmiennych-poniżej są podane przykładowe wartości, dla których widać już efekty kanałów
 n=100;       %długość sygnału
 frameSize=10; %długość pojedynczej ramki
-range=0.3;    %szansa na przekłamanie bitu(od 0 do 1)
+range=0.005;    %szansa na przekłamanie bitu(od 0 do 1)
 sigma=4;      %wpływa na rozrzut wartości szumu-taka duża wartość, bo test jest przy 5-krotnym wzmocnieniem sygnału
 amplify=5;    %wzmocnienie sygnału
 
 %testowanie sygnału względem zasięgu przekłamania bitu i sigmy przy szumie
-recivedBitsVB=[];
-missedBitsVB=[];
-correctBitsVB=[];
-recivedBitsVN=[];
-missedBitsVN=[];
-correctBitsVN=[];
 
-rangeTab=[];
-sigmaTab=[];
 
 for i=1:1:10
   range=(i-1)/30;
