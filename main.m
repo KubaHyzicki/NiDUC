@@ -3,66 +3,65 @@ close all;
 clear all;
 
 %ustawianie zmiennych-poniżej są podane przykładowe wartości, dla których widać już efekty kanałów
-n=100;       %długość sygnału
+n=100;        %długość sygnału
 frameSize=10; %długość pojedynczej ramki
-range=0.005;    %szansa na przekłamanie bitu(od 0 do 1)
+range=0.005;  %szansa na przekłamanie bitu(od 0 do 1)
 sigma=4;      %wpływa na rozrzut wartości szumu-taka duża wartość, bo test jest przy 5-krotnym wzmocnieniem sygnału
 amplify=5;    %wzmocnienie sygnału
-
-%testowanie sygnału względem zasięgu przekłamania bitu i sigmy przy szumie
-
-
-for i=1:1:10
-  range=(i-1)/30;
-  rangeTab=[rangeTab,range];
-  frameLost=signalSimulation(n,frameSize,sigma,range,amplify);
-  recivedBitsVB=[recivedBitsVB,frameLost(1)];
-  missedBitsVB=[missedBitsVB,frameLost(2)];
-  correctBitsVB=[correctBitsVB,frameLost(3)];
-end
-for i=1:1:10
-  sigma=(i-1)/2;
-  sigmaTab=[sigmaTab,sigma];
-  frameLost=signalSimulation(n,frameSize,sigma,range,amplify);
-  recivedBitsVN=[recivedBitsVN,frameLost(4)];
-  missedBitsVN=[missedBitsVN,frameLost(5)];
-  correctBitsVN=[correctBitsVN,frameLost(6)];
+m=8;          %długość kodowania crc
+P = ones(1, m+1);     %dzielniki crc-długość to m+1
+if (m == 4)
+  D = generateRand(5);
+elseif (m == 8)
+  D = generateRand(9);
+else
+  "ciastko"
 end
 
 
-%obliczanie dla obu kanałów BER i E
-BERvB=[];
-EvB=[];
-BERvN=[];
-EvN=[];
+signal=[];
+signal=generateRand(n);
+tabBER=[];
+tab4E=[];
+tabFrame=[];
+%tabMode=[];
+%cellstr(tabMode);
 
-for i=1:(length(missedBitsVB))
-  BERvB(i)=missedBitsVB(i)/(recivedBitsVB(i));
-  EvB(i)=correctBitsVB(i)/(recivedBitsVB(i));
-  BERvN(i)=missedBitsVN(i)/(recivedBitsVN(i));
-  EvN(i)=correctBitsVN(i)/(recivedBitsVN(i));
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+mode=2;     %1-parity bit, 2-crc
+for frameSize=[10,15,20,25,30,35,40]
+  temp=signalSimulation(n,frameSize,range,mode,D,m);
+  tabBER=[tabBER temp(1)];
+  tab4E=[tab4E temp(2)];
+  tabFrame=[tabFrame frameSize];
+%  tabMode=[tabMode, "CRC4"];
 end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+mode=2;     %1-parity bit, 2-crc
+m=8;
+D=generateRand(9);
+for frameSize=[10,15,20,25,30,35,40]
+  temp=signalSimulation(n,frameSize,range,mode,D,m);
+  tabBER=[tabBER temp(1)];
+  tab4E=[tab4E temp(2)];
+  tabFrame=[tabFrame frameSize];
+%  tabMode=[tabMode "CRC8"];
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+mode=1;     %1-parity bit, 2-crc
+for frameSize=[10,15,20,25,30,35,40] 
+  temp=signalSimulation(n,frameSize,range,mode,D,m);
+  tabBER=[tabBER temp(1)];
+  tab4E=[tab4E temp(2)];
+  tabFrame=[tabFrame frameSize];
+%  tabMode=[tabMode "PB"];
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tabBER
+tab4E
+tabFrame
+%tabMode
 
+%scatter(...)
 
-
-%wyświetlenie wykresów BER i E ramek względem zmiennych
-subplot(221)
-plot(rangeTab,BERvB)
-title('Kanał przekłamania bitów-BER')
-xlabel('Pp')
-ylabel('BER')
-subplot(222)
-plot(sigmaTab,EvB)
-title('Kanał przekłamania bitów-E')
-xlabel('Sigma')
-ylabel('E')
-subplot(223)
-plot(rangeTab,BERvN)
-title('Kanał dodający szum biały-BER')
-xlabel('Pp')
-ylabel('BER')
-subplot(224)
-plot(sigmaTab,EvN)
-title('Kanał dodający szum biały-E')
-xlabel('Sigma')
-ylabel('E')
+%z jakiegoś powodu niektóre wywołania się zawieszają, niektóre działają dobrze... -.-
