@@ -1,17 +1,14 @@
-function [VecNew] = codeParityBit (Vec,frameSize)
-  gen=crc.generator('Polynomial','0x8005','ReflectInput',true,'ReflectRemainder',true);
+function [VecNew] = codeCRC (Vec,D)
+%  gen=crc.generator('Polynomial','0x8005','ReflectInput',true,'ReflectRemainder',true);
   VecNew=[];
-  VecTemp=[];
-  b=1;
-  while true
-    if b>length(Vec)
-      break;
+  m=length(D)-1;
+  VecNew=[Vec zeros(1,m)];
+  for i=1:length(Vec)
+    if (VecNew(i) == 0)
+      continue;
     end
-    if b+frameSize>length(Vec)
-      frameSize=length(Vec)-b;
-    end
-    VecTemp=generate(gen,Vec(b:b+frameSize));
-    VecNew=[VecNew,VecTemp];
-    b=b+frameSize+1;
+    VecNew(i:i+m) = xor(VecNew(i:i+m),D);
   end
+  VecNew=[Vec VecNew(length(Vec)+1:length(VecNew))];
+  %codeCRC=VecNew(length(Vec)+1:length(VecNew));
 endfunction
