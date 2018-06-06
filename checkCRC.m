@@ -7,7 +7,6 @@ function [corr] = checkCRC (Vec,D)
     end
     Vec(i:i+m) = xor(Vec(i:i+m),D);
   end
-  Vec
   if Vec==zeros(1,length(Vec))
     corr=1;
   else

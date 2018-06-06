@@ -6,20 +6,21 @@ function [output] = signalSimulation (n,frameSize,range,codeMode,D,m)
   recivedBits=0;
   missedBits=0;
   correctBits=0;
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   if codeMode==2
     tempVec=[];
     frameStart=1;
     while(true)
 %ustalanie granic ramki
       tempFrameSize=frameSize;
-      frameEnd=frameStart+frameSize+m-1;
+      frameEnd=frameStart+frameSize-1;
       if frameEnd>n
         frameEnd=n;
         tempFrameSize=frameEnd-frameEnd+1;
       end
 %przepuszczanie sygnału przez symulację
-    
-%tempVec=codeParityBit(signal(frameStart:frameEnd),tempFrameSize);
+%      tempVec=codeParityBit(signal(frameStart:frameEnd),tempFrameSize);
       tempVec=codeCRC(signal(frameStart:frameEnd),D);
       
       tempVec=canalVB(tempVec,range);
@@ -29,7 +30,7 @@ function [output] = signalSimulation (n,frameSize,range,codeMode,D,m)
 %      if checkBitParity(tempVec,tempFrameSize)(1)==1
       if checkCRC(tempVec,D)==1
         frameStart+=tempFrameSize;                      %poprawnie przesłana paczka
-        if frameEnd==n
+        if frameEnd>=n
           break;
         end
       else
@@ -39,14 +40,15 @@ function [output] = signalSimulation (n,frameSize,range,codeMode,D,m)
     correctBits=recivedBits-missedBits;
     BER=missedBits/(recivedBits);
     E=correctBits/(recivedBits);
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-  elseif codeMode==1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  end
+  if codeMode==1
     tempVec=[];
     frameStart=1;
     while(true)
 %ustalanie granic ramki
       tempFrameSize=frameSize;
-      frameEnd=frameStart+frameSize+m-1;
+      frameEnd=frameStart+frameSize-1;
       if frameEnd>n
         frameEnd=n;
         tempFrameSize=frameEnd-frameEnd+1;
@@ -63,7 +65,7 @@ function [output] = signalSimulation (n,frameSize,range,codeMode,D,m)
       if checkBitParity(tempVec,tempFrameSize)(1)==1
 %      if checkCRC(tempVec,D)==1
         frameStart+=tempFrameSize;                      %poprawnie przesłana paczka
-        if frameEnd==n
+        if frameEnd>=n
           break;
         end
       else
