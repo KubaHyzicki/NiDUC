@@ -74,7 +74,7 @@ function [output] = signalSimulation (n,frameSize,range,codeMode,D,m)
     end
     correctBits=recivedBits-missedBits;
     BER=missedBits/(recivedBits);
-    E=correctBits/(recivedBits);
+    E=correctBits/(recivedBits+missedBits);
   end
   
   

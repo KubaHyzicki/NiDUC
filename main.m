@@ -21,8 +21,6 @@ else
   "ciastko"
 end
 
-signal=[];
-signal=generateRand(n);
 tabBER=[];
 tabE=[];
 tabFrame=[];
