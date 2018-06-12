@@ -1,5 +1,5 @@
-# NiDUC Etap II
-W projekcie został zasymulowany sygnał, każda ramka kodowana jest z użyciem bitów parzystości,
+# NiDUC Etap III
+W projekcie został zasymulowany sygnał, każda ramka kodowana jest z użyciem bitów parzystości i kodu CRC,
 przepuszczana przez kanał przekłamujący bity lub dodający szum biały,
 potem odkodowywana i sprawdzana jest poprawność jej bitu parzystości;
 w razie błędu powtarzany jest dla niej cały proces do skutku
