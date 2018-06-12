@@ -65,9 +65,9 @@ end
 
 scatter(tabE,tabBER)
 subplot(211)
-label1={'CRC4,n=10','CRC4,n=15','CRC4,n=20','CRC4,n=25','CRC4,n=30','CRC4,n=35','CRC4,n=40'};
-label2={'CRC8,n=10','CRC8,n=15','CRC8,n=20','CRC8,n=25','CRC8,n=30','CRC8,n=35','CRC8,n=40'};
-label3={'PB,n=10','PB,n=15','PB,n=20','PB,n=25','PB,n=30','PB,n=35','PB,n=40'};
+label1={'CRC4,fs=10','CRC4,fs=15','CRC4,fs=20','CRC4,fs=25','CRC4,fs=30','CRC4,fs=35','CRC4,fs=40'};
+label2={'CRC8,fs=10','CRC8,fs=15','CRC8,fs=20','CRC8,fs=25','CRC8,fs=30','CRC8,fs=35','CRC8,fs=40'};
+label3={'PB,fs=10','PB,fs=15','PB,fs=20','PB,fs=25','PB,fs=30','PB,fs=35','PB,fs=40'};
 xlabel('E')
 ylabel('BER')
 hold on
