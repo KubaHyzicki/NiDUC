@@ -65,20 +65,26 @@ end
 %tabFrame
 %tabMode
 
-%scatter(tabE,tabBER)
-%subplot(211)
-label1=['CRC4,n=10','CRC4,n=15','CRC4,n=20','CRC4,n=25','CRC4,n=30','CRC4,n=35','CRC4,n=40'];
-label2=['CRC8,n=10','CRC8,n=15','CRC8,n=20','CRC8,n=25','CRC8,n=30','CRC8,n=35','CRC8,n=40'];
-label3=['PB,n=10','PB,n=15','PB,n=20','PB,n=25','PB,n=30','PB,n=35','PB,n=40'];
-plot(tabE(1:7),tabBER(1:7),'*')
-text(tabE(1:7),tabBER(1:7),label1)
+scatter(tabE,tabBER)
+subplot(211)
+label1={'CRC4,n=10','CRC4,n=15','CRC4,n=20','CRC4,n=25','CRC4,n=30','CRC4,n=35','CRC4,n=40'};
+label2={'CRC8,n=10','CRC8,n=15','CRC8,n=20','CRC8,n=25','CRC8,n=30','CRC8,n=35','CRC8,n=40'};
+label3={'PB,n=10','PB,n=15','PB,n=20','PB,n=25','PB,n=30','PB,n=35','PB,n=40'};
 xlabel('E')
 ylabel('BER')
 hold on
-plot(tabE(8:14),tabBER(8:14),'*')
-text(tabE(8:14),tabBER(8:14),label2)
-plot(tabE(15:21),tabBER(15:21),'*')
-text(tabE(15:21),tabBER(15:21),label3)
+for i=1:7
+  plot(tabE(i),tabBER(i),'*')
+  text(tabE(i),tabBER(i),label1{i})
+end
+for i=8:14
+  plot(tabE(i),tabBER(i),'*')
+  text(tabE(i),tabBER(i),label2{i-7})
+end
+for i=15:21
+  plot(tabE(i),tabBER(i),'*')
+  text(tabE(i),tabBER(i),label3{i-14})
+end
 hold off
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot(212)
