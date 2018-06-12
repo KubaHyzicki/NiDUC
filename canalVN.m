@@ -4,6 +4,7 @@ function [Signal] = canalVN (Signal,sigma,amplify)
 %rozciągnięcie również zera(dla niego samo wymnożenie nie działa)
     if Signal(i)==0
       Signal(i)=1-amplify;
+    end
     Signal(i)=Signal(i)+normrnd(0,sigma);
   end
 endfunction
