@@ -88,13 +88,10 @@ end
 hold off
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot(212)
-%label=cellstr(num2str([1:4]'));
-plot(tabE(1:7),tabBER(1:7),'*')
-%text(tabE,tabBER,label)
 xlabel('E')
 ylabel('BER')
 hold on
+plot(tabE(1:7),tabBER(1:7),'*')
 plot(tabE(8:14),tabBER(8:14),'*')
 plot(tabE(15:21),tabBER(15:21),'*')
-%text(tabE,tabBER,label)
 hold off
