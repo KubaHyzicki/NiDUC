@@ -46,7 +46,7 @@ EvN=[];
 
 for i=1:(length(missedBitsVB))
   BERvB(i)=missedBitsVB(i)/(recivedBitsVB(i));
-  EvB(i)=correctBitsVB(i)/(recivedBitsVB(i)missedBitsVB(i));
+  EvB(i)=correctBitsVB(i)/(recivedBitsVB(i)+missedBitsVB(i));
   BERvN(i)=missedBitsVN(i)/(recivedBitsVN(i));
   EvN(i)=correctBitsVN(i)/(recivedBitsVN(i)+missedBitsVN(i));
 end
