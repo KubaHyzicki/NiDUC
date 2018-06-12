@@ -3,13 +3,13 @@ close all;
 clear all;
 
 %ustawianie zmiennych-poniżej są podane przykładowe wartości, dla których widać już efekty kanałów
-n=500;        %długość sygnału
+n=1280;        %długość sygnału
 frameSize=10; %długość pojedynczej ramki
 range=0.005;  %szansa na przekłamanie bitu(od 0 do 1)
-sigma=4;      %wpływa na rozrzut wartości szumu-taka duża wartość, bo test jest przy 5-krotnym wzmocnieniem sygnału
-amplify=5;    %wzmocnienie sygnału
+%sigma=4;      %wpływa na rozrzut wartości szumu-taka duża wartość, bo test jest przy 5-krotnym wzmocnieniem sygnału
+%amplify=5;    %wzmocnienie sygnału
 m=8;          %długość kodowania crc
-P = ones(1, m+1);     %dzielniki crc-długość to m+1
+%D-dzielniki crc-długość to m+1
 if (m == 4)
 %  D = generateRand(5);
   D=[1 1 1 1 1];
@@ -60,9 +60,9 @@ for frameSize=[10,15,20,25,30,35,40]
 %  tabMode=[tabMode "PB"];
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-tabBER
-tabE
-tabFrame
+%tabBER
+%tabE
+%tabFrame
 %tabMode
 
 %scatter(tabE,tabBER)
@@ -80,14 +80,15 @@ text(tabE(8:14),tabBER(8:14),label2)
 plot(tabE(15:21),tabBER(15:21),'*')
 text(tabE(15:21),tabBER(15:21),label3)
 hold off
-%subplot(212)
-%%label=cellstr(num2str([1:4]'));
-%plot(tabE(1:7),tabBER(1:7),'*')
-%%text(tabE,tabBER,label)
-%xlabel('E')
-%ylabel('BER')
-%hold on
-%plot(tabE(8:14),tabBER(8:14),'*')
-%plot(tabE(15:21),tabBER(15:21),'*')
-%%text(tabE,tabBER,label)
-%hold off
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+subplot(212)
+%label=cellstr(num2str([1:4]'));
+plot(tabE(1:7),tabBER(1:7),'*')
+%text(tabE,tabBER,label)
+xlabel('E')
+ylabel('BER')
+hold on
+plot(tabE(8:14),tabBER(8:14),'*')
+plot(tabE(15:21),tabBER(15:21),'*')
+%text(tabE,tabBER,label)
+hold off
